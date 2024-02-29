@@ -10,18 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
-
-  @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
@@ -57,7 +45,14 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  posts         Post[]
+}
+
+model Address {
+  id        String      @id @default(cuid())
+  city      String
+  district  String
+  street    String
+  Recipient Recipient[]
 }
 
 model VerificationToken {
@@ -66,4 +61,88 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model ShoppingItem {
+  id                    String     @id @default(cuid())
+  itemName              String     @unique
+  itemSubtitle          String
+  itemDescription       String
+  imageSrc              String
+  imageAlt              String
+  itemPrice             Int
+  itemSpecialPrice      Int?
+  itemAvailableQuantity Int        @default(0)
+  updatedAt             DateTime   @updatedAt
+  createdAt             DateTime   @default(now())
+  cartItem              CartItem[]
+}
+
+model LogisticsMethod {
+  id            String          @id @default(cuid())
+  logisticsType String
+  logisticsMode String
+  logisticsName String
+  freight       Int
+  payment       Int
+  updatedAt     DateTime        @updatedAt
+  createdAt     DateTime        @default(now())
+  goodsDelivery GoodsDelivery[]
+  recipient     Recipient[]
+
+  @@unique([logisticsType, logisticsMode])
+}
+
+model Coupon {
+  id            String          @id @default(cuid())
+  code          String          @unique
+  name          String
+  description   String
+  threshold     Int
+  active        Boolean
+  updatedAt     DateTime        @updatedAt
+  createdAt     DateTime        @default(now())
+  GoodsDelivery GoodsDelivery[]
+}
+
+model CartItem {
+  id              String         @id @default(cuid())
+  shoppingItem    ShoppingItem   @relation(fields: [shoppingItemId], references: [id])
+  shoppingItemId  String
+  quantity        Int
+  subtotal        Int
+  updatedAt       DateTime       @updatedAt
+  createdAt       DateTime       @default(now())
+  GoodsDelivery   GoodsDelivery? @relation(fields: [goodsDeliveryId], references: [id])
+  goodsDeliveryId String?
+}
+
+model Recipient {
+  id            String            @id @default(cuid())
+  name          String
+  cellphone     String
+  email         String
+  gender        String
+  timeToReceive String
+  note          String?
+  updatedAt     DateTime          @updatedAt
+  createdAt     DateTime          @default(now())
+  address       Address           @relation(fields: [addressId], references: [id])
+  addressId     String
+  favLogistics  LogisticsMethod[]
+  historyOrder  GoodsDelivery[]
+}
+
+model GoodsDelivery {
+  id                String          @id @default(cuid())
+  cartItem          CartItem[]
+  subtotal          Int
+  logistics         LogisticsMethod @relation(fields: [logisticsMethodId], references: [id])
+  logisticsMethodId String
+  recipient         Recipient       @relation(fields: [recipientId], references: [id])
+  recipientId       String
+  coupon            Coupon?         @relation(fields: [couponId], references: [id])
+  couponId          String?
+  updatedAt         DateTime        @updatedAt
+  createdAt         DateTime        @default(now())
 }

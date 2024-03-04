@@ -1,9 +1,9 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 
-import Image from 'next/image'
-import Logo from './Logo'
-import NavLink from './NavLink'
+import Image from "next/image";
+import Logo from "./Logo";
+import NavLink from "./NavLink";
 
 const FooterWrapper = styled.div`
   position: relative;
@@ -19,7 +19,7 @@ const FooterWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-`
+`;
 
 const FooterContentWrapper = styled.div`
   font-size: small;
@@ -28,7 +28,7 @@ const FooterContentWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-`
+`;
 const FooterImageWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,7 +41,7 @@ const FooterImageWrapper = styled.div`
     height: 1.5rem;
     object-fit: contain;
   }
-`
+`;
 const FooterCopyRight = styled.div`
   width: 100vw;
   color: grey;
@@ -50,11 +50,9 @@ const FooterCopyRight = styled.div`
   padding: 1rem;
   text-align: center;
   border-top: 1px solid rgba(87, 90, 93, 1);
-`
+`;
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <FooterWrapper>
       <Logo size={72} />
@@ -68,81 +66,81 @@ const Footer = (props: Props) => {
       </FooterContentWrapper>
       <FooterImageWrapper>
         <Image
-          width='50'
-          height='31'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/visa.png'
-          alt=''
+          width="50"
+          height="31"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/visa.png"
+          alt=""
         />
         <Image
-          width='83'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/mastercard.png'
-          alt=''
+          width="83"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/mastercard.png"
+          alt=""
         />
         <Image
-          width='67'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/jcb.png'
-          alt=''
+          width="67"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/jcb.png"
+          alt=""
         />
         <Image
-          width='130'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/PAYUNi.png'
-          alt=''
+          width="130"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/PAYUNi.png"
+          alt=""
         />
         <Image
-          width='157'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/ecpay.png'
-          alt=''
+          width="157"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/ecpay.png"
+          alt=""
         />
         <Image
-          width='101'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/pchomepay.png'
-          alt=''
+          width="101"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/pchomepay.png"
+          alt=""
         />
         <Image
-          width='51'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/7-11.png'
-          alt=''
+          width="51"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/7-11.png"
+          alt=""
         />
         <Image
-          width='54'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/familymart.png'
-          alt=''
+          width="54"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/familymart.png"
+          alt=""
         />
         <Image
-          width='43'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/hilife.png'
-          alt=''
+          width="43"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/hilife.png"
+          alt=""
         />
         <Image
-          width='259'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/icashPay.png'
-          alt=''
+          width="259"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/icashPay.png"
+          alt=""
         />
         <Image
-          width='78'
-          height='50'
-          src='https://static.1shop.tw/storefront/3.1.90/dist/img/brand/ApplePay.png'
-          alt=''
+          width="78"
+          height="50"
+          src="https://static.1shop.tw/storefront/3.1.90/dist/img/brand/ApplePay.png"
+          alt=""
         />
       </FooterImageWrapper>
       <FooterCopyRight>
         本系統由
-        <NavLink href='https://www.google.com' externalLink>
+        <NavLink href="https://www.google.com" externalLink>
           威爾森行銷
         </NavLink>
         維護
       </FooterCopyRight>
     </FooterWrapper>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

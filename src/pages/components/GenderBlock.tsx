@@ -8,9 +8,8 @@ import {
 } from "./FormBlock";
 import { useAtom } from "jotai";
 import { getGenderTypeAtom, genderTypeAtom } from "~/atoms";
-type Props = {};
 
-const GenderBlock = (props: Props) => {
+const GenderBlock = () => {
   const [genders] = useAtom(getGenderTypeAtom);
   const [genderType, setGenderType] = useAtom(genderTypeAtom);
   return (

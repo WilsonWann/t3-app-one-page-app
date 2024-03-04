@@ -1,5 +1,5 @@
 import { Header, Navbar, FixedButtons, Footer } from "~/lib/components";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 const RootLayout = (props: PropsWithChildren) => {
   return (

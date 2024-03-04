@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import NavLink from "./NavLink";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
@@ -8,7 +8,7 @@ import { navbarOpenAtom } from "~/atoms";
 import { useAtom } from "jotai";
 import Logo from "./Logo";
 import CloseButton from "./CloseButton";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import Backdrop from "./Backdrop";
 import usePreventScroll from "../hook/usePreventScroll";
 
@@ -133,7 +133,6 @@ const CloseButtonWrapper = styled.div`
 
 const Navbar = () => {
   const { data: sessionData } = useSession();
-  const pathname = usePathname();
   const [navbarOpen, toggleNavbar] = useAtom(navbarOpenAtom);
 
   usePreventScroll({ active: navbarOpen });

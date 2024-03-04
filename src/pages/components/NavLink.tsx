@@ -1,12 +1,8 @@
 "use client";
-import React, {
-  ComponentPropsWithoutRef,
-  ElementType,
-  useCallback,
-} from "react";
+import React, { useCallback } from "react";
+import type { ComponentPropsWithoutRef, ElementType } from "react";
 import Link from "next/link";
-import styled from "@emotion/styled";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import { navbarOpenAtom } from "~/atoms";
 import { useAtom } from "jotai";
 
@@ -14,6 +10,7 @@ const DEFAULT_TYPE = Link;
 
 type Props<T extends ElementType> = {
   As?: T;
+  href?: string;
   children?: React.ReactNode;
   externalLink?: boolean;
   onClick?: () => void;
@@ -22,7 +19,7 @@ type Props<T extends ElementType> = {
 function NavLink<T extends ElementType = typeof DEFAULT_TYPE>({
   As,
   href = "/",
-  exact = true,
+  // exact = true,
   children,
   externalLink = false,
   onClick,
@@ -39,8 +36,8 @@ function NavLink<T extends ElementType = typeof DEFAULT_TYPE>({
     toggleNavbar(false);
   }, [onClick, toggleNavbar]);
 
-  const pathname = usePathname();
-  const isActive = exact ? pathname === href : pathname.startsWith(href);
+  // const pathname = usePathname();
+  // const isActive = exact ? pathname === href : pathname.startsWith(href);
 
   if (externalLink) {
     return (

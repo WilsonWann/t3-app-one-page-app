@@ -1,8 +1,8 @@
 import { atom } from 'jotai'
 import { atomWithReset, RESET } from 'jotai/utils'
-import { ShoppingItem } from '@prisma/client'
+import type { ShoppingItem } from '@prisma/client'
 
-import { ProductErrorProps, QuantityProps, TakeOnHandItem } from '~/types'
+import type { ProductErrorProps, QuantityProps, TakeOnHandItem } from '~/types'
 import { shoppingListAtom, getTakeOnHandItemIdAtom } from '.'
 
 const getTakeOnHandItem = (shoppingList: ShoppingItem[], id: string) => {

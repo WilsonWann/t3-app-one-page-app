@@ -39,9 +39,7 @@ const RegisterButton = styled.div<RegisterButtonProps>`
   }
 `;
 
-type Props = {};
-
-const RegisterPage = (props: Props) => {
+const RegisterPage = () => {
   return (
     <RegisterPageWrapper>
       <DisplayTitle

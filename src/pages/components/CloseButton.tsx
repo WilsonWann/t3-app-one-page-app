@@ -1,6 +1,6 @@
-import React from 'react'
-import { IoClose } from 'react-icons/io5'
-import styled from '@emotion/styled'
+import React from "react";
+import { IoClose } from "react-icons/io5";
+import styled from "@emotion/styled";
 
 const CloseLabel = styled.label`
   width: 100%;
@@ -15,20 +15,20 @@ const CloseLabel = styled.label`
   &:hover svg {
     opacity: 0.6;
   }
-`
+`;
 type Props = {
-  htmlFor?: string
-  onClick?: () => void
-}
+  htmlFor?: string;
+  onClick?: () => void;
+};
 
 const CloseButton = (props: Props) => {
-  const { htmlFor = '', onClick = () => {} } = props
+  const { htmlFor = "", onClick = () => void 0 } = props;
 
   return (
     <CloseLabel htmlFor={htmlFor} onClick={onClick}>
-      <IoClose color='black' size={20} />
+      <IoClose color="black" size={20} />
     </CloseLabel>
-  )
-}
+  );
+};
 
-export default CloseButton
+export default CloseButton;

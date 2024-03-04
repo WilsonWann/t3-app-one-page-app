@@ -1,6 +1,6 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { IoCartOutline } from 'react-icons/io5'
+import React from "react";
+import styled from "@emotion/styled";
+import { IoCartOutline } from "react-icons/io5";
 
 const CartIconWrapper = styled.div`
   position: relative;
@@ -18,17 +18,23 @@ const CartIconWrapper = styled.div`
     line-height: 1rem;
     font-size: 0.7rem;
   }
-`
+`;
 type Props = {
-  size?: number
-  color?: string
-  bold?: boolean
-  itemNumber: number
-  onClick?: () => void
-}
+  size?: number;
+  color?: string;
+  bold?: boolean;
+  itemNumber?: number;
+  onClick?: () => void;
+};
 
 const CartIcon = (props: Props) => {
-  const { size = 22, color = 'black', bold = false, itemNumber, onClick } = props
+  const {
+    size = 22,
+    color = "black",
+    bold = false,
+    itemNumber = 0,
+    onClick,
+  } = props;
   return (
     <CartIconWrapper>
       <IoCartOutline
@@ -36,12 +42,12 @@ const CartIcon = (props: Props) => {
         color={color}
         onClick={onClick}
         style={{
-          ...(bold && { filter: 'drop-shadow(0.8px 0.8px 0px #fff)' })
+          ...(bold && { filter: "drop-shadow(0.8px 0.8px 0px #fff)" }),
         }}
       />
       {itemNumber > 0 && <span>{itemNumber}</span>}
     </CartIconWrapper>
-  )
-}
+  );
+};
 
-export default CartIcon
+export default CartIcon;

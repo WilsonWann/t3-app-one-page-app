@@ -1,6 +1,5 @@
-import { ShoppingItem } from "@prisma/client"
-import { StaticImageData } from "next/image"
-import { Logistics, InStorePickup, Payment, LogisticsMode, Gender, TimeToReceive } from '~/const'
+import type { ShoppingItem } from "@prisma/client"
+import type { Logistics, Payment, LogisticsMode, Gender, TimeToReceive } from '~/const'
 
 type QuantityProps = {
   quantity: number

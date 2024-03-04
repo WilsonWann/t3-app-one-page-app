@@ -2,9 +2,7 @@ import React from "react";
 import { getGoodsDeliverAtom } from "~/atoms";
 import { useAtom } from "jotai";
 
-type Props = {};
-
-const OrderPage = (props: Props) => {
+const OrderPage = () => {
   const [goodsDeliver] = useAtom(getGoodsDeliverAtom);
   return (
     <div>

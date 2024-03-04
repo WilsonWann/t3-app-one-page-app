@@ -3,7 +3,6 @@ import {
   Block,
   BlockTitle,
   BlockContent,
-  BlockCol,
   RadioButton,
   Label,
 } from "./FormBlock";
@@ -14,9 +13,7 @@ import {
   setLogisticsTypeAtom,
 } from "~/atoms";
 
-type Props = {};
-
-const LogisticsBlock = (props: Props) => {
+const LogisticsBlock = () => {
   const [logisticsType] = useAtom(logisticsTypeAtom);
   const [logisticsDetail] = useAtom(getLogisticsDetailAtom);
   const [, setLogisticsType] = useAtom(setLogisticsTypeAtom);

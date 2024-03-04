@@ -5,16 +5,16 @@ import { streetAtom } from "~/atoms";
 import ErrorMessage from "./ErrorMessage";
 
 type Props = {
-  error?: any;
+  error?: { _errors: string[] };
   required?: boolean;
 };
 
 const StreetBlock = (props: Props) => {
-  const { error, required = false } = props;
+  const { error = { _errors: [] }, required = false } = props;
   const [street, setStreet] = useAtom(streetAtom);
   return (
     <>
-      <Block error={error?._errors[0]} required={required}>
+      <Block error={!!error?._errors[0]} required={required}>
         <BlockTitle htmlFor={"street"}>街道地址</BlockTitle>
         <BlockContent>
           <input

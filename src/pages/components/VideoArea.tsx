@@ -1,9 +1,7 @@
 import React from "react";
 import LiteYoutube from "./LiteYoutube";
 
-type Props = {};
-
-const VideoArea = (props: Props) => {
+const VideoArea = () => {
   //* get arr from API
   const arr = [
     {

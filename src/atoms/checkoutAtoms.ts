@@ -4,7 +4,7 @@ import type {
   FamilyMartPickupType, GoodsDeliverType, HiLifePickupType, HomeDeliveryType, LogisticsProps, SevenElevenPickupType
 } from '~/types'
 import { Logistics, Payments, OnlinePayments } from '~/const'
-import { getInStorePickupCouponAtom, getHomeDeliveryCouponAtom, getCartListAtom, getCartListSubtotalAtom, getRecipientAtom } from '.'
+import { getInStorePickupCouponAtom, getHomeDeliveryCouponAtom, getCartListAtom, getCartListSubtotalAtom } from '.'
 import { getValidateRecipientAtom } from './recipientAtoms'
 function getCouponAndReturnFreight<LogisticsProps>(logistics: LogisticsProps, coupon: Coupon, payment: typeof Payments[number]): LogisticsProps {
   if (coupon.active) {

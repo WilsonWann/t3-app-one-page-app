@@ -3,14 +3,13 @@ import { BlockTitle, BlockContent, Block } from "./FormBlock";
 import { useAtom } from "jotai";
 import { getDefaultAddressAtom, setDefaultAddressAtom } from "~/atoms";
 
-type Props = {};
-
-const DefaultAddress = (props: Props) => {
+const DefaultAddress = () => {
   const [defaultAddressStatus] = useAtom(getDefaultAddressAtom);
   const [, setDefaultAddress] = useAtom(setDefaultAddressAtom);
   return (
     <Block>
       <BlockContent>
+        <label htmlFor="defaultAddress">設為預設地址</label>
         <input
           type="checkbox"
           id="defaultAddress"

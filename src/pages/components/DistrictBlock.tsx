@@ -5,12 +5,12 @@ import { getCityAtom, districtDataAtom, districtAtom } from "~/atoms";
 import ErrorMessage from "./ErrorMessage";
 
 type Props = {
-  error?: any;
+  error?: { _errors: string[] };
   required?: boolean;
 };
 
 const DistrictBlock = (props: Props) => {
-  const { error, required } = props;
+  const { error = { _errors: [] }, required } = props;
   const [selectedCity] = useAtom(getCityAtom);
   const [districtData, setDistrictData] = useAtom(districtDataAtom);
   const [selectedDistrict, setDistrict] = useAtom(districtAtom);
@@ -28,12 +28,13 @@ const DistrictBlock = (props: Props) => {
 
   return (
     <BlockCol>
-      <Block required={required} error={error?._errors[0]}>
+      <Block required={required} error={!!error?._errors[0]}>
         <BlockTitle htmlFor={"district"}>區域</BlockTitle>
         <BlockContent>
           <select
             id="district"
             name="district"
+            title={"區域"}
             value={selectedDistrict}
             onChange={(e) =>
               setDistrict(e.target.value === "-1" ? -1 : e.target.value)

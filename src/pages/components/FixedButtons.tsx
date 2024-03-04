@@ -30,7 +30,7 @@ const ButtonDiv = styled.div<ButtonProps>`
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
-  background-color: ${(props) => props.backgroundColor || "#4d4d4d"};
+  background-color: ${(props) => props.backgroundColor ?? "#4d4d4d"};
   color: ${(props) => props.color ?? "unset"};
   padding: 0.5rem;
   line-height: 1;
@@ -105,7 +105,7 @@ function CircleButton<T extends ElementType = typeof DEFAULT_TYPE>({
   As,
   backgroundColor,
   color,
-  onClick = () => {},
+  onClick = () => void 0,
   children,
   ...props
 }: CircleButtonProps<T>) {

@@ -5,12 +5,12 @@ import { cityDataAtom, setCityAtom } from "~/atoms";
 import ErrorMessage from "./ErrorMessage";
 
 type Props = {
-  error?: any;
+  error?: { _errors: string[] };
   required?: boolean;
 };
 
 const CityBlock = (props: Props) => {
-  const { error, required } = props;
+  const { error = { _errors: [] }, required } = props;
   const [cityData, setCityData] = useAtom(cityDataAtom);
   const [, setCity] = useAtom(setCityAtom);
 
@@ -18,7 +18,8 @@ const CityBlock = (props: Props) => {
     function getCityData() {
       fetch("/api/getCity")
         .then((res) => res.json())
-        .then((data: string[]) => setCityData(data));
+        .then((data: string[]) => setCityData(data))
+        .catch((err) => console.error("🚀 ~ .then ~ err:", err));
     }
 
     getCityData();
@@ -27,12 +28,13 @@ const CityBlock = (props: Props) => {
   return (
     <>
       <BlockCol>
-        <Block required={required} error={error?._errors[0]}>
+        <Block required={required} error={!!error?._errors[0]}>
           <BlockTitle htmlFor={"country"}>縣市</BlockTitle>
           <BlockContent>
             <select
               id="country"
               name="country"
+              title={"縣市"}
               onChange={(e) =>
                 setCity(e.target.value === "-1" ? -1 : e.target.value)
               }

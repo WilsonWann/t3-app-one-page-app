@@ -3,9 +3,7 @@ import { Block, BlockTitle, BlockContent } from "./FormBlock";
 import { useAtom } from "jotai";
 import { noteAtom } from "~/atoms";
 
-type Props = {};
-
-const NoteBlock = (props: Props) => {
+const NoteBlock = () => {
   const [note, setNote] = useAtom(noteAtom);
   return (
     <Block>

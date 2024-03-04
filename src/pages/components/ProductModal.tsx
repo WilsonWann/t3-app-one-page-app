@@ -45,6 +45,11 @@ const CloseButtonWrapper = styled.div`
 const ErrorMessage = styled.p`
   color: red;
 `;
+
+const Subtotal = styled.div`
+  white-space: "nowrap";
+`;
+
 type Props = {
   active: boolean;
 };
@@ -69,9 +74,9 @@ const ProductModal = (props: Props) => {
               align={"start"}
               padding={"1rem"}
               subtotal={
-                <div style={{ whiteSpace: "nowrap" }}>
+                <Subtotal>
                   小計：{numberFormat(takeOnHandItem.subtotal)}
-                </div>
+                </Subtotal>
               }
               addToCartButton={
                 <AddToCartButton

@@ -9,9 +9,7 @@ import {
 import { useAtom } from "jotai";
 import { getPaymentTypeAtom, paymentTypesAtom } from "~/atoms";
 
-type Props = {};
-
-const PaymentBlock = (props: Props) => {
+const PaymentBlock = () => {
   const [paymentType, setPaymentType] = useAtom(paymentTypesAtom);
   const [payments] = useAtom(getPaymentTypeAtom);
   return (

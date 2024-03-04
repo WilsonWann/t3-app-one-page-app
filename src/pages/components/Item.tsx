@@ -9,7 +9,7 @@ import {
 } from "~/atoms";
 import AddToCartButton from "./AddToCartButton";
 import numberFormat from "~/utils/numberFormat";
-import { ShoppingItem } from "@prisma/client";
+import type { ShoppingItem } from "@prisma/client";
 
 type ItemWrapperProps = {
   align: string;

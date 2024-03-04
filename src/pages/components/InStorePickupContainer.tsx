@@ -1,24 +1,25 @@
-import React from 'react'
-import { Block, BlockTitle, BlockContent } from './FormBlock'
-type Props = {}
+import React from "react";
+import { Block, BlockContent } from "./FormBlock";
 
-const InStorePickupContainer = (props: Props) => {
+const InStorePickupContainer = () => {
   return (
     <>
       <Block>
-        <BlockTitle htmlFor={'inStorePickup'}>取貨超商</BlockTitle>
+        {/* <BlockTitle htmlFor={"inStorePickup"}>取貨超商</BlockTitle> */}
         <BlockContent>
-          <input id='inStorePickup' type='text' />
+          <label htmlFor="inStorePickup">請選擇取貨超商</label>
+          <input id="inStorePickup" type="text" />
         </BlockContent>
       </Block>
       <Block>
         <BlockContent>
-          <input type='checkbox' id='defaultStore' />
+          <input type="checkbox" id="defaultStore" />
         </BlockContent>
-        <BlockTitle htmlFor={'defaultStore'}>儲存為常用超商</BlockTitle>
+        <label htmlFor="defaultStore">儲存為常用超商</label>
+        {/* <BlockTitle htmlFor={"defaultStore"}>儲存為常用超商</BlockTitle> */}
       </Block>
     </>
-  )
-}
+  );
+};
 
-export default InStorePickupContainer
+export default InStorePickupContainer;

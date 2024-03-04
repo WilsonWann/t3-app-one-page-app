@@ -5,16 +5,16 @@ import { nameAtom } from "~/atoms";
 import ErrorMessage from "./ErrorMessage";
 
 type Props = {
-  error?: any;
+  error?: { _errors: string[] };
   required?: boolean;
 };
 
 const NameBlock = (props: Props) => {
-  const { error, required = false } = props;
+  const { error = { _errors: [] }, required = false } = props;
   const [name, setName] = useAtom(nameAtom);
   return (
     <>
-      <Block error={error?._errors[0]} required={required}>
+      <Block error={!!error?._errors[0]} required={required}>
         <BlockTitle htmlFor={"recipient"}>
           收件人<span>請填寫姓名</span>
         </BlockTitle>

@@ -1,7 +1,7 @@
 import { atom } from 'jotai'
 import { atomWithReset, RESET } from 'jotai/utils'
 import { cartMaxLimit } from '~/const'
-import { CartErrorProps, CartItem, ErrorProps, TakeOnHandItem } from '~/types'
+import type { CartErrorProps, CartItem, ErrorProps, TakeOnHandItem } from '~/types'
 import { takeOnHandAtom, productModalOpenAtom, resetCounterAtom, resetTakeOnHandItemIdAtom, resetProductModalErrorAtom } from '.'
 
 function generateError(quantity: number, maxQuantity: number): ErrorProps | undefined {

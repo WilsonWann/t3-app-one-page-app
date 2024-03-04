@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import { AddressType, GenderType, GoodsDeliverType, RecipientType, TimeToReceiveType } from '~/types'
+import type { AddressType, GenderType, TimeToReceiveType } from '~/types'
 import { Gender, TimeToReceive } from '~/const'
 
 export const getGenderTypeAtom = atom(
@@ -97,8 +97,9 @@ export const timeToReceiveAtom = atom<TimeToReceiveType>(
     const timeToReceives = get(getTimeToReceiveAtom)
     const timeToReceiveType = get(timeToReceiveTypeAtom)
 
+    //* take care of the exclamation mark at the end
     return timeToReceives
-      .filter(timeToReceive => timeToReceive.type === timeToReceiveType)[0].type
+      .filter(timeToReceive => timeToReceive.type === timeToReceiveType)[0]!.type
   }
 )
 export const genderAtom = atom<GenderType>(
@@ -106,13 +107,14 @@ export const genderAtom = atom<GenderType>(
     const genders = get(getGenderTypeAtom)
     const genderType = get(genderTypeAtom)
 
+    //* take care of the exclamation mark at the end
     return genders
-      .filter(gender => gender.type === genderType)[0].type
+      .filter(gender => gender.type === genderType)[0]!.type
   })
 export const emailAtom = atom<string>('')
 export const noteAtom = atom<string>('')
 
-const recipientAtom = atom<RecipientType>({} as RecipientType)
+// const recipientAtom = atom<RecipientType>({} as RecipientType)
 export const getRecipientAtom = atom(
   get => {
     return {

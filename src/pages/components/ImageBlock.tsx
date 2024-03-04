@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import styled from "@emotion/styled";
-import { Photo } from "~/types";
+import type { Photo } from "~/types";
 
 type CustomWidthProps = {
   customType: "width";

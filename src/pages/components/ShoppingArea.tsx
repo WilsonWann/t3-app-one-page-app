@@ -8,7 +8,7 @@ import { shoppingAreaDisplayColumnAtom } from "~/atoms";
 import HorizontalLine from "./HorizontalLine";
 import DisplayTitle from "./DisplayTitle";
 import CardItem from "./CardItem";
-import { ShoppingItem } from "@prisma/client";
+import type { ShoppingItem } from "@prisma/client";
 
 const DisplayControlPanel = styled.div`
   display: flex;

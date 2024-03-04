@@ -3,9 +3,7 @@ import React from "react";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-type Props = {};
-
-const AccountPage = (props: Props) => {
+const AccountPage = () => {
   const { data: sessionData } = useSession();
   if (!sessionData || !sessionData.user) redirect("/");
 

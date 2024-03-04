@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { useAtom } from "jotai";
-import {
-  getInStorePickupCouponAtom,
-  getHomeDeliveryCouponAtom,
-  getCartListSubtotalAtom,
-} from "~/atoms";
+import { getInStorePickupCouponAtom, getCartListSubtotalAtom } from "~/atoms";
 import Badge from "./Badge";
 
 const CartDiscountWrapper = styled.div`
@@ -26,9 +22,7 @@ const CartDiscountWrapper = styled.div`
   }
 `;
 
-type Props = {};
-
-const CartDiscount = (props: Props) => {
+const CartDiscount = () => {
   const [subtotal] = useAtom(getCartListSubtotalAtom);
   const [inStorePickupCoupon] = useAtom(getInStorePickupCouponAtom);
 

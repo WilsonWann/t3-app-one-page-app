@@ -2,24 +2,23 @@
 
 import ShoppingArea from "./components/ShoppingArea";
 import MarketingBlock from "./components/MarketingBlock";
-import { ReactElement, useEffect } from "react";
+import type { ReactElement } from "react";
 import { useAtom } from "jotai";
 import { productModalOpenAtom, shoppingListAtom } from "~/atoms";
 import ProductModal from "./components/ProductModal";
 import CartArea from "./components/CartArea";
 import Promotion from "./components/Promotion";
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import ImageArea from "./components/ImageArea";
 import VideoArea from "./components/VideoArea";
-import { NextPageWithLayout } from "./_app";
-import { ShoppingItem } from "@prisma/client";
+import type { NextPageWithLayout } from "./_app";
 import RootLayout from "./components/rootLayout";
 import { api } from "~/utils/api";
 
 const Home: NextPageWithLayout = () => {
   const { data: shoppingList, isLoading } = api.shoppingItem.getAll.useQuery();
   const [, setShoppingList] = useAtom(shoppingListAtom);
-  const { data: sessionData } = useSession();
+  // useSession();
   const [modalOpen] = useAtom(productModalOpenAtom);
 
   if (isLoading) return <p>Loading...</p>;

@@ -2,9 +2,7 @@ import React from "react";
 import { api } from "~/utils/api";
 import ImageBlock from "./ImageBlock";
 
-type Props = {};
-
-const ImageArea = (props: Props) => {
+const ImageArea = () => {
   const { data: allImages, isLoading } =
     api.shoppingItem.getBase64Images.useQuery();
 

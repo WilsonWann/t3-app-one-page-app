@@ -21,7 +21,7 @@ import EmailBlock from "./EmailBlock";
 import NoteBlock from "./NoteBlock";
 import ScamReminderBlock from "./ScamReminderBlock";
 import { recipientSchema } from "~/zodSchema";
-import { z, ZodFormattedError } from "zod";
+import type { z, ZodFormattedError } from "zod";
 import CartTotalBlock from "./CartTotalBlock";
 import { useRouter } from "next/navigation";
 import CheckAuthBlock from "./CheckAuthBlock";

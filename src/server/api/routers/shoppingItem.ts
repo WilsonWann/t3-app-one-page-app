@@ -1,12 +1,10 @@
-import { z } from "zod";
 import addBlurredDataUrls from "~/lib/getBase64";
 
 import {
   createTRPCRouter,
-  protectedProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
-import { ImagesResults, Photo } from "~/types";
+import type { ImagesResults } from "~/types";
 
 export const shoppingItemRouter = createTRPCRouter({
   getAll: publicProcedure

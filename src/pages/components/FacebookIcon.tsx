@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from "react";
+import styled from "@emotion/styled";
 
 const IconWrapper = styled.div`
   position: relative;
@@ -14,26 +14,26 @@ const IconWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-`
+`;
 
 const IconSpan = styled.span`
   position: relative;
   font-size: small;
-`
+`;
 type Props = {
-  children: React.ReactNode
-  onClick?: () => void
-  iconText: string
-}
+  children: React.ReactNode;
+  onClick?: () => void;
+  iconText: string;
+};
 
 const IconTemplate = (props: Props) => {
-  const { children, onClick = () => {}, iconText } = props
+  const { children, onClick = () => void 0, iconText } = props;
   return (
     <IconWrapper onClick={onClick}>
       {children}
       <IconSpan>{iconText}</IconSpan>
     </IconWrapper>
-  )
-}
+  );
+};
 
-export default IconTemplate
+export default IconTemplate;

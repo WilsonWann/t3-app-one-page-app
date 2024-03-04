@@ -1,19 +1,19 @@
 "use client";
-import React from "react";
-import styled from "@emotion/styled";
+// import React from "react";
+// import styled from "@emotion/styled";
 // import { useFormStatus } from "react-dom";
 
-const Button = styled.button`
-  border: none;
-  outline: none;
-  position: relative;
-  padding: 0 1remj;
-  background-color: #ff3366;
-  height: 3rem;
-  width: 100%;
-  border-radius: 10rem;
-  color: white;
-`;
+// const Button = styled.button`
+//   border: none;
+//   outline: none;
+//   position: relative;
+//   padding: 0 1remj;
+//   background-color: #ff3366;
+//   height: 3rem;
+//   width: 100%;
+//   border-radius: 10rem;
+//   color: white;
+// `;
 
 type Props = {
   text: string;

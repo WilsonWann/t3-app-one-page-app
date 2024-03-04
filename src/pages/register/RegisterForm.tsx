@@ -44,7 +44,7 @@ const RegisterForm = () => {
         error={errors.password?.toString()}
       />
       {errors.password && <ErrorMessage>必須填寫</ErrorMessage>}
-      <SubmitButton text={"立即註冊"} />
+      {/* <SubmitButton text={"立即註冊"} /> */}
     </Form>
   );
 };

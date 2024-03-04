@@ -146,3 +146,8 @@ const Label = styled.label`
 `;
 
 export { Block, BlockTitle, BlockContent, BlockCol, RadioButton, Label };
+
+function FormBlock() {
+  return <div>Welcome to my site!</div>;
+}
+export default FormBlock;

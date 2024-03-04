@@ -42,21 +42,22 @@ const CounterPanel = styled.div`
   border-left: none;
 `;
 type Props = {
-  cartItemId?: number;
+  cartItemId?: string;
   count: number;
+  max: number;
 };
 
 const Counter = (props: Props) => {
-  const { cartItemId, count } = props;
+  const { cartItemId, count, max } = props;
   const [, counter] = useAtom(dispatchAtom);
   return (
     <>
       <CounterWrapper>
-        <DecrementButton onClick={() => counter("DEC", cartItemId)}>
+        <DecrementButton onClick={() => counter("DEC", max, cartItemId)}>
           -
         </DecrementButton>
         <CounterPanel>{count}</CounterPanel>
-        <IncrementButton onClick={() => counter("INC", cartItemId)}>
+        <IncrementButton onClick={() => counter("INC", max, cartItemId)}>
           +
         </IncrementButton>
       </CounterWrapper>

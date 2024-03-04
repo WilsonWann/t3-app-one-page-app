@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import ImageBlock from "./ImageBlock";
-import { ShoppingItem } from "~/types";
+// import { ShoppingItem } from "~/types";
 import { useAtom } from "jotai";
 import {
   shoppingAreaDisplayColumnAtom,
@@ -9,6 +9,7 @@ import {
 } from "~/atoms";
 import AddToCartButton from "./AddToCartButton";
 import numberFormat from "~/utils/numberFormat";
+import { ShoppingItem } from "@prisma/client";
 
 type ItemWrapperProps = {
   align: string;
@@ -28,6 +29,7 @@ const ItemWrapper = styled.div<ItemWrapperProps>`
     props.align === "center" ? "center" : `flex-${props.align}`};
   text-align: ${(props) => props.align};
   gap: 0.5rem;
+  overflow: hidden;
 
   & > *:last-child {
     margin-top: auto;
@@ -120,15 +122,15 @@ const Item = (props: Props) => {
     <ItemWrapper align={align}>
       {isInProductModal ? (
         <CardImageBlock
-          src={item.src}
-          alt={item.alt}
+          src={item.imageSrc}
+          alt={item.imageAlt}
           customType={"height"}
           customHeight={`${16}rem`}
         />
       ) : (
         <CardImageBlock
-          src={item.src}
-          alt={item.alt}
+          src={item.imageSrc}
+          alt={item.imageAlt}
           customType={"height"}
           customHeight={`${16 / columnNumber}rem`}
         />
@@ -136,17 +138,18 @@ const Item = (props: Props) => {
 
       <ItemContentWrapper padding={props.padding}>
         <ItemTitle>
-          {item.name}
-          <small>{item.subtitle}</small>
+          {item.itemName}
+          <small>{item.itemSubtitle}</small>
         </ItemTitle>
         <PriceWrapper>
-          <Price>原價：{numberFormat(item.price)}</Price>
+          <Price>原價：{numberFormat(item.itemPrice)}</Price>
           <SpecialPrice>
-            現在特價只要{numberFormat(item.specialPrice)}元
+            現在特價只要{numberFormat(item.itemSpecialPrice ?? item.itemPrice)}
+            元
           </SpecialPrice>
         </PriceWrapper>
         {children}
-        <Content>{item.content}</Content>
+        <Content>{item.itemDescription}</Content>
       </ItemContentWrapper>
       <ItemFooter>
         {subtotal}

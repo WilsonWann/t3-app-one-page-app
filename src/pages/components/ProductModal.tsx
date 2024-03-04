@@ -84,7 +84,10 @@ const ProductModal = (props: Props) => {
               <CloseButtonWrapper>
                 <CloseButton onClick={() => setModalOpen(false)} />
               </CloseButtonWrapper>
-              <Counter count={takeOnHandItem.quantity} />
+              <Counter
+                count={takeOnHandItem.quantity}
+                max={takeOnHandItem.itemAvailableQuantity}
+              />
               {productModalError.error && (
                 <ErrorMessage>
                   {productModalError.error.errorMessage}

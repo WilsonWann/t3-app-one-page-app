@@ -6,7 +6,6 @@ type Props = {};
 
 const OrderPage = (props: Props) => {
   const [goodsDeliver] = useAtom(getGoodsDeliverAtom);
-  console.log("🚀 ~ OrderPage ~ goodsDeliver:", goodsDeliver);
   return (
     <div>
       <div>`物流名稱：${goodsDeliver.logistics.logisticsName}`</div>

@@ -1,4 +1,4 @@
-const cartMaxLimit = 5
+const cartMaxLimit = 20
 
 const TimeToReceive = ['unset', 'morning', 'afternoon'] as const
 

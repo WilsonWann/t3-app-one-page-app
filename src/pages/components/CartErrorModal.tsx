@@ -1,12 +1,12 @@
-import React from 'react'
-import styled from '@emotion/styled'
-import { IoCloseCircleOutline } from 'react-icons/io5'
-import Backdrop from './Backdrop'
-import usePreventScroll from '../hook/usePreventScroll'
+import React from "react";
+import styled from "@emotion/styled";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import Backdrop from "./Backdrop";
+import usePreventScroll from "../hook/usePreventScroll";
 
 type ModalDivProps = {
-  active: boolean
-}
+  active: boolean;
+};
 const ModalDiv = styled.div<ModalDivProps>`
   position: fixed;
   top: 50%;
@@ -17,7 +17,7 @@ const ModalDiv = styled.div<ModalDivProps>`
   transform: translate(-50%, -50%);
   padding: 1rem;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: ${(props) => (props.active ? 'calc(99999 + 3)' : '-1')};
+  z-index: ${(props) => (props.active ? "calc(99999 + 3)" : "-1")};
   transition: top 0.25s ease-in-out;
   color: white;
 
@@ -26,24 +26,28 @@ const ModalDiv = styled.div<ModalDivProps>`
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: nowrap;
-`
+`;
 
 type Props = {
-  errorMessage: string
-}
+  errorMessage: string;
+};
 
 const CartErrorModal = (props: Props) => {
-  const { errorMessage } = props
-  usePreventScroll({ active: !!errorMessage })
+  const { errorMessage } = props;
+  usePreventScroll({ active: !!errorMessage });
   return (
     <>
-      <Backdrop active={!!errorMessage} backgroundColor={'transparent'} zIndex={99999 + 3 - 1} />
+      <Backdrop
+        active={!!errorMessage}
+        backgroundColor={"transparent"}
+        zIndex={99999 + 3 - 1}
+      />
       <ModalDiv active={!!errorMessage}>
-        <IoCloseCircleOutline color={'red'} size={32} />
+        <IoCloseCircleOutline color={"red"} size={32} />
         <div>{errorMessage}</div>
       </ModalDiv>
     </>
-  )
-}
+  );
+};
 
-export default CartErrorModal
+export default CartErrorModal;

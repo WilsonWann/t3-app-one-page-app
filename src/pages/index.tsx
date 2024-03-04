@@ -14,24 +14,17 @@ import VideoArea from "./components/VideoArea";
 import { NextPageWithLayout } from "./_app";
 import { ShoppingItem } from "@prisma/client";
 import RootLayout from "./components/rootLayout";
+import { api } from "~/utils/api";
 
 const Home: NextPageWithLayout = () => {
-  const [shoppingList, setShoppingList] = useAtom(shoppingListAtom);
-  console.log("🚀 ~ Home ~ shoppingList:", shoppingList);
-
+  const { data: shoppingList, isLoading } = api.shoppingItem.getAll.useQuery();
+  const [, setShoppingList] = useAtom(shoppingListAtom);
+  const { data: sessionData } = useSession();
   const [modalOpen] = useAtom(productModalOpenAtom);
 
-  const { data: sessionData } = useSession();
-  console.log("🚀 ~ Home ~ sessionData:", sessionData);
-  useEffect(() => {
-    // function getData() {
-    //   fetch("/api/getServerData")
-    //     .then((res) => res.json())
-    //     .then((data: ShoppingItem[]) => setShoppingList(data));
-    // }
-    // getData();
-  }, [setShoppingList]);
-
+  if (isLoading) return <p>Loading...</p>;
+  if (!shoppingList) return <p>No data</p>;
+  setShoppingList(shoppingList);
   return (
     // <main className="flex min-h-screen flex-col items-center justify-between">
     <>
@@ -53,8 +46,7 @@ const Home: NextPageWithLayout = () => {
         }
       />
 
-      <ShoppingArea data={[]} />
-      {/* <ShoppingArea data={shoppingList} /> */}
+      <ShoppingArea data={shoppingList} />
       <ProductModal active={modalOpen} />
 
       <CartArea />

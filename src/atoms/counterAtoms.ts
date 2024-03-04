@@ -1,17 +1,18 @@
 import { atom } from 'jotai'
+import { atomWithReset, RESET } from 'jotai/utils'
 import { updateCartAtom, updateTakeOnHandItemAtom } from '.'
 
-const baseAtom = atom(1)
+const baseAtom = atomWithReset(1)
 
 export const counterAtom = atom((get) => get(baseAtom))
 export const resetCounterAtom = atom(
   null,
-  (_get, set) => set(baseAtom, 1)
+  (_get, set) => set(baseAtom, RESET)
 )
-export const incAtom = atom(null, (get, set) => {
+export const incAtom = atom(null, (get, set, max: number) => {
   set(baseAtom, (prev) => {
-    if (prev + 1 > 3) {
-      return 3
+    if (prev + 1 > max) {
+      return max
     } else {
       return prev + 1
     }
@@ -29,9 +30,9 @@ export const decAtom = atom(null, (_get, set) => {
 
 export const dispatchAtom = atom(
   null,
-  (get, set, type: "INC" | "DEC", cartItemId?: number) => {
+  (get, set, type: "INC" | "DEC", max: number, cartItemId?: string) => {
     if (type === 'INC') {
-      set(incAtom)
+      set(incAtom, max)
     } else if (type === 'DEC') {
       set(decAtom)
     } else {

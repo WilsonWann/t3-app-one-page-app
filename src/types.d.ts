@@ -1,18 +1,6 @@
+import { ShoppingItem } from "@prisma/client"
 import { StaticImageData } from "next/image"
 import { Logistics, InStorePickup, Payment, LogisticsMode, Gender, TimeToReceive } from '~/const'
-
-type ShoppingItem = {
-  id: number
-  image: File;
-  src: string;
-  alt: string;
-  name: string;
-  subtitle: string;
-  content: string;
-  price: number;
-  specialPrice: number;
-  maxQuantity?: number
-}
 
 type QuantityProps = {
   quantity: number
@@ -106,4 +94,14 @@ type GoodsDeliverType = {
   cartItems: CartItem[]
   subtotal: number
   recipient: RecipientType
+}
+
+type ImagesResults = {
+  photos: Photo[]
+}
+
+type Photo = {
+  src: string
+  alt: string
+  blurredDataUrl?: string
 }

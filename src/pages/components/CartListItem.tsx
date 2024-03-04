@@ -17,13 +17,36 @@ const CartWrapper = styled.div`
   padding: 1rem;
 
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  border-top: 1px solid rgba(87, 90, 93, 1);
+
+  & > * {
+    flex-shrink: 0;
+  }
+`;
+
+const CartTitle = styled.h3`
+  display: block;
+  text-align: left;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const CartDetail = styled.div`
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  border-top: 1px solid rgba(87, 90, 93, 1);
+  width: 100%;
 `;
-const CardImageBlock = styled(ImageBlock)``;
+const CardImageBlock = styled(ImageBlock)`
+  flex-grow: 1;
+`;
 
 const RemoveButtonWrapper = styled.div`
   position: relative;
@@ -31,21 +54,18 @@ const RemoveButtonWrapper = styled.div`
   width: 2rem;
   border-radius: 50%;
   background-color: lightgray;
-`;
-const CartTitle = styled.h3`
-  display: flex;
-  flex-direction: column;
-  align-items: inherit;
-  gap: 0.5rem;
+
+  flex-grow: 0;
 `;
 
 const PriceWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
   flex-wrap: wrap;
-  column-gap: 1rem;
-  row-gap: 0.5rem;
+  width: fit-content;
+  gap: 0;
 `;
 
 const Price = styled.div`
@@ -63,6 +83,13 @@ const SpecialPrice = styled.div`
   }
 `;
 
+const ItemCalculator = styled.div`
+  flex-grow: 0;
+`;
+const ItemSubtotal = styled.div`
+  text-align: right;
+`;
+
 type Props = {
   item: CartListItem;
 };
@@ -73,27 +100,34 @@ const CartListItem = (props: Props) => {
 
   return (
     <CartWrapper>
-      <RemoveButtonWrapper>
-        <TrashIcon onClick={() => removeCart(item.id)} />
-      </RemoveButtonWrapper>
-      {/* <CardImageBlock
-        src={item.image}
-        alt={item.alt}
-        customType={"width"}
-        customWidth={`3rem`}
-      /> */}
-      <div>
-        {/* <CartTitle>{item.title}</CartTitle> */}
-        <PriceWrapper>
-          <Price>{numberFormat(item.price)}</Price>
-          <SpecialPrice>
-            {numberFormat(item.specialPrice)} * <b>{item.quantity}</b>
-          </SpecialPrice>
-        </PriceWrapper>
-        <Counter cartItemId={item.id} count={item.quantity} />
-        {item.error && <ErrorMessage>{item.error.errorMessage}</ErrorMessage>}
-      </div>
-      <div>{numberFormat(item.subtotal)}</div>
+      <CartTitle>{item.itemName}</CartTitle>
+      <CartDetail>
+        <RemoveButtonWrapper>
+          <TrashIcon onClick={() => removeCart(item.id)} />
+        </RemoveButtonWrapper>
+        <CardImageBlock
+          src={item.imageSrc}
+          alt={item.imageAlt}
+          customType={"width"}
+          customWidth={`8rem`}
+        />
+        <ItemCalculator>
+          <PriceWrapper>
+            <Price>{numberFormat(item.itemPrice)}</Price>
+            <SpecialPrice>
+              {numberFormat(item.itemSpecialPrice ?? item.itemPrice)} *{" "}
+              <b>{item.quantity}</b>
+            </SpecialPrice>
+          </PriceWrapper>
+          <Counter
+            cartItemId={item.id}
+            count={item.quantity}
+            max={item.itemAvailableQuantity}
+          />
+          {item.error && <ErrorMessage>{item.error.errorMessage}</ErrorMessage>}
+        </ItemCalculator>
+        <ItemSubtotal>{numberFormat(item.subtotal)}</ItemSubtotal>
+      </CartDetail>
     </CartWrapper>
   );
 };

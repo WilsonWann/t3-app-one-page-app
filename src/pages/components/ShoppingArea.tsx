@@ -8,7 +8,7 @@ import { shoppingAreaDisplayColumnAtom } from "~/atoms";
 import HorizontalLine from "./HorizontalLine";
 import DisplayTitle from "./DisplayTitle";
 import CardItem from "./CardItem";
-import { ShoppingItem } from "~/types";
+import { ShoppingItem } from "@prisma/client";
 
 const DisplayControlPanel = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ type Props = {
 };
 
 const ShoppingArea = (props: Props) => {
-  const { data } = props;
+  const { data: shoppingItems } = props;
   const [columnNumber, setColumn] = useAtom(shoppingAreaDisplayColumnAtom);
   return (
     <>
@@ -63,7 +63,7 @@ const ShoppingArea = (props: Props) => {
         {/* <TfiLayoutGrid4Alt size={12} color={'#999'} onClick={() => setColumn(4)} /> */}
       </DisplayControlPanel>
       <DisplayArea gap={"1rem"} columnItems={columnNumber}>
-        {data.map((item, index) => (
+        {shoppingItems.map((item, index) => (
           <CardItem key={index} item={item} />
         ))}
       </DisplayArea>

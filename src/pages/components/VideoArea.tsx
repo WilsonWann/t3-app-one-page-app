@@ -1,5 +1,5 @@
-import React from 'react';
-import LiteYoutube from './LiteYoutube';
+import React from "react";
+import LiteYoutube from "./LiteYoutube";
 
 type Props = {};
 
@@ -7,9 +7,9 @@ const VideoArea = (props: Props) => {
   //* get arr from API
   const arr = [
     {
-      id: 'L2vS_050c-M',
-      title: 'What’s new in Material Design for the web (Chrome Dev Summit 2019)'
-    }
+      id: "ribJ-EMduM8",
+      title: "Net Ninja Content Roadmap - 2024",
+    },
   ];
   return (
     <>

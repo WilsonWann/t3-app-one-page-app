@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
+import { atomWithReset, RESET } from 'jotai/utils'
 import { cartMaxLimit } from '~/const'
 import { CartErrorProps, CartItem, ErrorProps, TakeOnHandItem } from '~/types'
 import { takeOnHandAtom, productModalOpenAtom, resetCounterAtom, resetTakeOnHandItemIdAtom, resetProductModalErrorAtom } from '.'
@@ -20,7 +21,7 @@ function generateError(quantity: number, maxQuantity: number): ErrorProps | unde
 }
 function getCartItemQuantity(cartItem: CartItem, type: "INC" | "DEC"): number {
   const quantity = type === 'INC' ? cartItem.quantity + 1 : cartItem.quantity - 1
-  const maxQuantity = cartItem.maxQuantity ?? 3
+  const maxQuantity = cartItem.itemAvailableQuantity
 
   const error = generateError(quantity, maxQuantity)
   cartItem.error = error
@@ -33,13 +34,13 @@ function getCartItemQuantity(cartItem: CartItem, type: "INC" | "DEC"): number {
   }
 }
 
-export function updateCart(cartItems: CartItem[], id: number, type: "INC" | "DEC"): CartItem[] {
+export function updateCart(cartItems: CartItem[], id: string, type: "INC" | "DEC"): CartItem[] {
   const selectedIndex = cartItems.findIndex(item => item.id === id)
   if (selectedIndex === -1) return cartItems
 
   const selectedItem = cartItems.at(selectedIndex)!
   const quantity = getCartItemQuantity(selectedItem, type)
-  const subtotal = selectedItem.specialPrice * quantity
+  const subtotal = (selectedItem.itemSpecialPrice ?? selectedItem.itemPrice) * quantity
   const newItem = {
     ...selectedItem,
     quantity,
@@ -47,7 +48,7 @@ export function updateCart(cartItems: CartItem[], id: number, type: "INC" | "DEC
   } satisfies CartItem
   return cartItems.toSpliced(selectedIndex, 1, newItem)
 }
-function removeCart(cartItems: CartItem[], id: number): CartItem[] {
+function removeCart(cartItems: CartItem[], id: string): CartItem[] {
   return cartItems.filter(item => item.id !== id)
 }
 function addToCart(cartItems: CartItem[], onHandItem: TakeOnHandItem | undefined): CartItem[] {
@@ -59,7 +60,7 @@ function addToCart(cartItems: CartItem[], onHandItem: TakeOnHandItem | undefined
       {
         ...selectedItem,
         quantity: selectedItem.quantity + onHandItem.quantity,
-        subtotal: selectedItem.subtotal * (selectedItem.specialPrice * onHandItem.quantity)
+        subtotal: selectedItem.subtotal * (selectedItem.itemSpecialPrice ?? selectedItem.itemPrice) * onHandItem.quantity
       }
     ]
   }
@@ -81,18 +82,12 @@ function countCartAndOnHand(cartItems: CartItem[], onHandItem: TakeOnHandItem | 
 
 const cartMaxLimitAtom = atom<number>(cartMaxLimit)
 const cartListAtom = atom<CartItem[]>([])
-const resetCartErrorModalAtom = atom(
-  null,
-  (_get, set) => {
-    set(cartErrorModalAtom, {})
-  }
-)
 
 const addToCartSuccessAtom = atom<boolean>(false)
 export const getAddToCartSuccessAtom = atom(get => get(addToCartSuccessAtom))
 const activeAddToCartSuccessAtom = atom(
   null,
-  (_et, set) => {
+  (_get, set) => {
     set(addToCartSuccessAtom, true)
     setTimeout(() => {
       set(addToCartSuccessAtom, false)
@@ -100,10 +95,10 @@ const activeAddToCartSuccessAtom = atom(
   }
 )
 
-export const cartErrorModalAtom = atom<CartErrorProps>({})
+export const cartErrorModalAtom = atomWithReset<CartErrorProps>({})
 export const setCartErrorModalAtom = atom(
   null,
-  (get, set, { errorType, errorMessage }: ErrorProps) => {
+  (_get, set, { errorType, errorMessage }: ErrorProps) => {
     set(cartErrorModalAtom, {
       error: {
         errorType: errorType,
@@ -111,10 +106,11 @@ export const setCartErrorModalAtom = atom(
       }
     })
     setTimeout(() => {
-      set(resetCartErrorModalAtom)
+      set(cartErrorModalAtom, RESET)
     }, 2000)
   }
 )
+
 export const getCartItemQuantityAtom = atom(get => get(getCartListAtom).reduce((acc, curr) => acc + curr.quantity, 0))
 export const getCartListSubtotalAtom = atom(get => get(getCartListAtom).reduce((acc, curr) => acc + curr.subtotal, 0))
 
@@ -132,7 +128,7 @@ export const addToCartAtom = atom(
       return
     }
 
-    set(resetCartErrorModalAtom)
+    set(cartErrorModalAtom, RESET)
     set(cartListAtom, addToCart(get(getCartListAtom), get(takeOnHandAtom)))
     set(resetCounterAtom)
     set(resetTakeOnHandItemIdAtom)
@@ -144,14 +140,14 @@ export const addToCartAtom = atom(
 
 export const removeCartAtom = atom(
   null,
-  (get, set, id: number) => {
+  (get, set, id: string) => {
     set(cartListAtom, removeCart(get(getCartListAtom), id))
   }
 )
 
 export const updateCartAtom = atom(
   null,
-  (get, set, id: number, type: "INC" | "DEC") => {
+  (get, set, id: string, type: "INC" | "DEC") => {
 
     set(cartListAtom, updateCart(get(getCartListAtom), id, type))
     const total = countCartAndOnHand(get(getCartListAtom), undefined)
@@ -163,7 +159,7 @@ export const updateCartAtom = atom(
       })
       return
     }
-    set(resetCartErrorModalAtom)
+    set(cartErrorModalAtom, RESET)
 
   }
 )

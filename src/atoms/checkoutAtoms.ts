@@ -66,10 +66,10 @@ export const getLogisticsDetailAtom = atom<LogisticsProps[]>(
   ],
 )
 
-export const logisticsTypeAtom = atom<typeof Logistics[number]>('homeDelivery')
+export const logisticsTypeAtom = atom<LogisticsProps["logisticsType"]>("homeDelivery")
 export const setLogisticsTypeAtom = atom(
   null,
-  (get, set, logisticsType: typeof Logistics[number]) => {
+  (get, set, logisticsType: LogisticsProps["logisticsType"]) => {
     set(logisticsTypeAtom, logisticsType)
     const payment = get(paymentTypesAtom)
     if (logisticsType === 'homeDelivery') {
@@ -80,10 +80,11 @@ export const setLogisticsTypeAtom = atom(
   }
 )
 export const paymentTypesAtom = atom<typeof Payments[number]>('credit')
-export const mainLogisticsAtom = atom<LogisticsProps>(
+export const mainLogisticsAtom = atom(
   get => {
     const logisticsDetails = get(getLogisticsDetailAtom)
-    const selectedLogistics = logisticsDetails.filter(logistics => logistics.logisticsType === get(logisticsTypeAtom))[0]
+    //* take care of the exclamation mark at the end
+    const selectedLogistics = logisticsDetails.filter(logistics => logistics.logisticsType === get(logisticsTypeAtom))[0]!
     return selectedLogistics
   }
 )
@@ -127,7 +128,7 @@ export const getPaymentTypeAtom = atom(
   }
 )
 
-export const getGoodsDeliverAtom = atom<GoodsDeliverType>(
+export const getGoodsDeliverAtom = atom(
   get => {
     const logistics = get(mainLogisticsAtom)
     const cartItems = get(getCartListAtom)

@@ -1,8 +1,8 @@
 "use client";
 
-import Header from "~/pages/components/Header";
-import Navbar from "~/pages/components/Navbar";
-import FixedButtons from "~/pages/components/FixedButtons";
-import Footer from "~/pages/components/Footer";
+import Header from "~/components/Header";
+import Navbar from "~/components/Navbar";
+import FixedButtons from "~/components/FixedButtons";
+import Footer from "~/components/Footer";
 
 export { Header, Navbar, FixedButtons, Footer };

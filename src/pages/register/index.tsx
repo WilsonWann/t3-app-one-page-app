@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import styled from "@emotion/styled";
-import DisplayTitle from "../components/DisplayTitle";
-import UserIcon from "../components/UserIcon";
+import DisplayTitle from "../../components/DisplayTitle";
+import UserIcon from "../../components/UserIcon";
 import { FaFacebook, FaLine } from "react-icons/fa";
 import RegisterForm from "./RegisterForm";
 

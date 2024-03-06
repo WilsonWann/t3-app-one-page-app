@@ -1,18 +1,18 @@
 "use client";
 
-import ShoppingArea from "./components/ShoppingArea";
-import MarketingBlock from "./components/MarketingBlock";
+import ShoppingArea from "../components/ShoppingArea";
+import MarketingBlock from "../components/MarketingBlock";
 import type { ReactElement } from "react";
 import { useAtom } from "jotai";
 import { productModalOpenAtom, shoppingListAtom } from "~/atoms";
-import ProductModal from "./components/ProductModal";
-import CartArea from "./components/CartArea";
-import Promotion from "./components/Promotion";
+import ProductModal from "../components/ProductModal";
+import CartArea from "../components/CartArea";
+import Promotion from "../components/Promotion";
 // import { useSession } from "next-auth/react";
-import ImageArea from "./components/ImageArea";
-import VideoArea from "./components/VideoArea";
+import ImageArea from "../components/ImageArea";
+import VideoArea from "../components/VideoArea";
 import type { NextPageWithLayout } from "./_app";
-import RootLayout from "./components/rootLayout";
+import RootLayout from "../components/rootLayout";
 import { api } from "~/utils/api";
 
 const Home: NextPageWithLayout = () => {
